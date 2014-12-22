@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <groupId>test</groupId>
+   <artifactId>test</artifactId>
+   <version>0.0.1-SNAPSHOT</version>
+   <dependencies>
+      <dependency>
+         <groupId>com.google.guava</groupId>
+         <artifactId>guava</artifactId>
+         <version>18.0</version>
+      </dependency>
+
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.11</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.1.2</version>
+
+            <configuration>
+               <timeoutFactor>1.5</timeoutFactor>
+               <timeoutConstant>10000</timeoutConstant>
+            </configuration>
+
+            <executions>
+               <execution>
+                  <goals>
+                     <goal>mutationCoverage</goal>
+                  </goals>
+                  <configuration>
+                     <targetClasses>
+                        <param>test.*</param>
+                     </targetClasses>
+                     <targetTests>
+                        <param>test.*</param>
+                     </targetTests>
+                     <mutationThreshold>100</mutationThreshold>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+</project>
